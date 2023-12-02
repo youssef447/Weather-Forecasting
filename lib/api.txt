@@ -1,0 +1,15 @@
+//Current weather Api
+
+30ec55b6946668980272c6316642977b
+
+
+https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=30ec55b6946668980272c6316642977b
+
+
+``````````````````````````````````````````````````````````````````````````````````````````````````````````
+
+
+
+//last 5 days weather Api
+api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=30ec55b6946668980272c6316642977b
+
