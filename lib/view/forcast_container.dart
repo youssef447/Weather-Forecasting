@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weatherapp/Model/models/weatherModule.dart';
 
-class forcastContainer extends StatelessWidget {
+class ForcastContainer extends StatelessWidget {
   final WeatherModule module;
     final Color color;
 
-  const forcastContainer({super.key, required this.module,required this.color});
+  const ForcastContainer({super.key, required this.module,required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,7 @@ class forcastContainer extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
           child: Column(
-            //mainAxisSize: MainAxisSize.min,
-            //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            
             children: [
               FittedBox(
                 child: Text(

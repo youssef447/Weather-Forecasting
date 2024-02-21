@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:weatherapp/core/styles/app_colors.dart';
 
 import '../../constants.dart';
 
 ThemeData darkTheme = ThemeData(
   //primarySwatch: defaultColor,
   
-  scaffoldBackgroundColor: const Color(0Xff1c242f), // const Color(0XFF333739),
+  scaffoldBackgroundColor:  AppColors.defaultColor, // const Color(0XFF333739),
   
   appBarTheme: const AppBarTheme(
     titleSpacing: 20.0,
@@ -28,7 +29,7 @@ ThemeData darkTheme = ThemeData(
   ),
   
   drawerTheme: const DrawerThemeData(
-    backgroundColor: Color(0Xff1c242f),
+    backgroundColor: AppColors.defaultColor,
   ),
   iconTheme: const IconThemeData(color: Colors.white),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -82,7 +83,7 @@ ThemeData lightTheme = ThemeData(
       ),
   dividerTheme: const DividerThemeData(
     thickness: 1.5,
-    color: Color(0Xff1c242f),
+    color: AppColors.defaultColor,
   ),
   
   colorScheme:  const ColorScheme.light(primary: defaultColor),

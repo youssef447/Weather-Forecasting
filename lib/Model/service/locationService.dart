@@ -1,17 +1,19 @@
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:weatherapp/constants.dart';
 
 import '../models/userLocation.dart';
 import 'ILocationService.dart';
 
-
 class LocationService implements ILocationService {
   @override
   Future<Position> getCurrentPosition() async {
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  /*   bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       return Future.error('please enable location services');
-    }
+      
+    } */
+
     ///Returns a [Future] indicating if the user allows the App to access the device's location.
     var permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
@@ -33,32 +35,27 @@ class LocationService implements ILocationService {
     //get location..returns LocationData object
     var currentLocation = await Geolocator.getCurrentPosition();
 
-    return currentLocation; 
+    return currentLocation;
   }
 
-    @override
-
-  Future<List<String>> getAddress() async {
-    var currentLocation = await getCurrentPosition();
+  @override
+  Future<String> getAddress() async {
     try {
+          var currentLocation = await getCurrentPosition();
+
       List<Placemark> placemark = await placemarkFromCoordinates(
         currentLocation.latitude,
         currentLocation.longitude,
       );
-      List<String> res = [];
       String country = placemark[0].country!;
-      res.add(country);
 
       String state = placemark[0].administrativeArea!;
-      res.add(state);
       String city = state.split(" ")[0];
-      res.add(city);
-      String street = placemark[0].street!;
-      res.add(street);
-      print("${res[3]}, ${res[2]} ${res[0]}");
-      return res;
+      //String street = placemark[0].street!;
+      return '$city, $country';
     } catch (e) {
-      return Future.error(e);
+      print('a7a');
+      return Future.value(myLocation);
     }
   }
 

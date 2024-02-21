@@ -15,6 +15,7 @@ import 'core/styles/themes.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  configurationDependencies();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: const Color(0xff3b296b),
     statusBarBrightness: Brightness.light,
@@ -23,7 +24,7 @@ void main() async {
   ));
   CacheHelper.init();
   DioHelper.init(baseUrl: baseUrl);
-  await locators.get<ILocationService>().getAddress();
+  myLocation=await locators.get<ILocationService>().getAddress();
   /*  CitiesNames = await getAllCities();
   for(var name in CitiesNames){
     print('${name.name} ,${name.countryCode}');
