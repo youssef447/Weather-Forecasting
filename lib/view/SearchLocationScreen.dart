@@ -1,9 +1,9 @@
 import 'package:country_state_city_picker/country_state_city_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
-import 'package:weatherapp/shared/components.dart';
 
+
+import '../core/defaultFormField.dart';
 import '../view-model/Cubits/WeatherCubit.dart';
 import '../view-model/Cubits/WeatherStates.dart';
 
@@ -70,7 +70,7 @@ class _SearchLocationScreenState extends State<SearchLocationScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 10.0),
-                            child: defaultFormField(
+                            child: DefaultFormField(
                               context: context,
                               controller: controller,
                               filled: true,

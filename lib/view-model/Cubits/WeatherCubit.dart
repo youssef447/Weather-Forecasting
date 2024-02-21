@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weatherapp/Model/repositories/weather_repo.dart';
-import 'package:weatherapp/Network/local/cach_helper.dart';
+import 'package:weatherapp/Model/service/Network/local/cach_helper.dart';
 
 import '../../Model/apis/Api_response.dart';
 import '../../Model/models/gridItem.dart';
+import '../../core/Di/injection.dart';
 import 'WeatherStates.dart';
 
 class WeatherCubit extends Cubit<WeatherStates> {
@@ -15,9 +16,8 @@ class WeatherCubit extends Cubit<WeatherStates> {
   bool isDark = false;
   int foreCastTapIndex = 0;
   bool allLoaded = false;
-   ApiResponse currentWeatherResponse = ApiResponse.initial('Empty data');
-     ApiResponse foreCastResponse = ApiResponse.initial('Empty data');
-
+  ApiResponse currentWeatherResponse = ApiResponse.initial('Empty data');
+  ApiResponse foreCastResponse = ApiResponse.initial('Empty data');
 
   List<GridItem> gridItem = [];
 
@@ -42,8 +42,8 @@ class WeatherCubit extends Cubit<WeatherStates> {
     print('loading');
 
     emit(GetDataLoadingState());
-    WeatherRepo.getCurrentWeatherData().then((value) {
-       // WeatherModule weatherMod= currentWeatherResponse.data as WeatherModule;
+    locators.get<WeatherRepo>().getCurrentWeatherData().then((value) {
+      // WeatherModule weatherMod= currentWeatherResponse.data as WeatherModule;
       gridItem.add(
         GridItem(
             iconData: Icons.wb_sunny_outlined,
@@ -54,7 +54,7 @@ class WeatherCubit extends Cubit<WeatherStates> {
         GridItem(
             iconData: Icons.wb_sunny_outlined,
             title: "sunset",
-            value:value.getSys!.getSunset!),
+            value: value.getSys!.getSunset!),
       );
       gridItem.add(
         GridItem(
@@ -74,7 +74,7 @@ class WeatherCubit extends Cubit<WeatherStates> {
           title: "feels like",
         ),
       );
-      currentWeatherResponse=ApiResponse.completed(value);
+      currentWeatherResponse = ApiResponse.completed(value);
 
       getForecastData();
     }).catchError((onError) {
@@ -83,8 +83,11 @@ class WeatherCubit extends Cubit<WeatherStates> {
   }
 
   getForecastData() {
-    WeatherRepo.getFiveDaysThreeHoursForecastData().then((value) {
-      foreCastResponse=ApiResponse.completed(value);
+    locators
+        .get<WeatherRepo>()
+        .getFiveDaysThreeHoursForecastData()
+        .then((value) {
+      foreCastResponse = ApiResponse.completed(value);
       allLoaded = true;
 
       emit(GetDataSuccessState());

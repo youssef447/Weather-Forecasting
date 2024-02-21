@@ -5,11 +5,11 @@ import 'package:weatherapp/Model/apis/Api_response.dart';
 import 'package:weatherapp/constants.dart';
 import 'package:weatherapp/view/SearchLocationScreen.dart';
 
-import '../Model/models/weatherModule.dart';
-import '../view-model/Cubits/WeatherCubit.dart';
-import '../view-model/Cubits/WeatherStates.dart';
-import 'additionalInfoGridItem.dart';
-import 'forcastContainer.dart';
+import '../../Model/models/weatherModule.dart';
+import '../../view-model/Cubits/WeatherCubit.dart';
+import '../../view-model/Cubits/WeatherStates.dart';
+import '../additionalInfoGridItem.dart';
+import '../forcastContainer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -96,7 +96,6 @@ class HomeScreen extends StatelessWidget {
                                   width: double.infinity,
                                   fit: BoxFit.fill,
                                 ),
-                                //titlePadding: EdgeInsets.only(bottom:(MediaQuery.of(context).size.height-MediaQuery.of(context).padding.top)*0.5,left: 20),
 
                                 title: FittedBox(
                                   child: Row(

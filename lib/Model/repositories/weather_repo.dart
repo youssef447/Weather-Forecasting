@@ -1,22 +1,24 @@
 import 'package:weatherapp/Model/models/weatherModule.dart';
+import 'package:weatherapp/Model/service/iWeatherService.dart';
 
 import '../../constants.dart';
-import '../service/weatherService.dart';
 
 class WeatherRepo {
-  static Future<WeatherModule> getCurrentWeatherData() async {
+  final IWeatherService _weatherService;
+  WeatherRepo(this._weatherService);
+  Future<WeatherModule> getCurrentWeatherData() async {
     print('loading');
 
     final response =
-        await WeatherService.getCurrentWeatherData(myLocation.split(', ')[0]);
+        await _weatherService.getCurrentWeatherData(myLocation.split(', ')[0]);
 
     //make repository class and handle this part and just call here instance of repo
     return WeatherModule.fromJson(response.data);
   }
 
-  static Future<List<WeatherModule>> getFiveDaysThreeHoursForecastData() async {
-    final response = await WeatherService.getFiveDaysThreeHoursForecastData(
-        myLocation.split(', ')[0]);
+  Future<List<WeatherModule>> getFiveDaysThreeHoursForecastData() async {
+    final response = await _weatherService
+        .getFiveDaysThreeHoursForecastData(myLocation.split(', ')[0]);
 
     var tmp = response.data['list'] as List;
     print('ooooh ${tmp[0]}');
